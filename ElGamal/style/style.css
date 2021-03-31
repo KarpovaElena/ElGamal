@@ -1,0 +1,254 @@
+body {
+	margin: 0;
+	padding: 0;
+	
+	background: #f0f2ff;
+}
+
+* {
+	font-size: 14pt;
+	font-family: 'cambria';
+}
+
+#a, #b, #decodedUserMsg {
+	font-weight: bold;
+	font-size: 16pt;
+	color: green;
+}
+
+header {
+	margin: 0 auto;
+
+	height: 200px;
+	max-width: 1022px;
+	width: 100%;
+
+	background-image: url(../images/logo.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.content {
+	padding: 5px;
+	margin: 0 auto;
+
+	min-height: 300px;
+	max-width: 1014px;
+	width: 100%;
+
+	background: #f0f2ff;
+}
+
+.history {
+	padding: 2%;
+
+	min-height: 300px;
+	width: 96%;
+
+	text-align: justify;
+	font-size: 14pt;
+}
+
+.history h2:first-child {
+	margin: 0 auto;
+
+	width: 50%;
+	height: 50px;
+
+	text-align: center;
+
+	font-size: 20pt;
+	font-weight: bold;
+}
+
+.history h2 {
+	margin: 15px auto;
+
+	width: 50%;
+	height: 50px;
+
+	text-align: center;
+
+	font-size: 20pt;
+	font-weight: bold;
+}
+
+.history ul li:first-child {
+	margin-top: 0;
+}
+
+.history ul li {
+	margin-top: 10px;
+}
+
+.encDec {
+	padding: 1%;
+	margin-top: 20px;
+
+	min-height: 300px;
+	width: 98%;
+
+	display: inline-flex;
+	justify-content: space-between;
+}
+
+.encrypt {
+	margin-left: 50px;
+
+	width: 44%;
+
+	border-right: 2px solid #5564b5;
+}
+
+.decrypt {
+	width: 45%;
+}
+
+#timeResDecrypt, #timeResEncrypt {
+    margin-top: 15px;
+    
+	font-weight: bold;
+	font-size: 16pt;
+	color: red;
+}
+
+.headerEncDec {
+	margin: 10px auto;
+
+	text-align: center;
+
+	max-width: 400px;
+	height: 50px;
+
+	font-size: 18pt;
+}
+
+.selfTest {
+	padding: 1%;
+	margin-top: 20px;
+
+	min-height: 300px;
+	width: 98%;
+}
+
+.selfTest h2 {
+	margin: 0 auto;
+
+	text-align: center;
+
+	width: 300px;
+
+	font-size: 18pt;
+}
+
+footer {
+	padding: 5px;
+	margin: 0 auto;
+
+	max-width: 1014px;
+	width: 100%;
+	min-height: 30px;
+
+	text-align: center;
+
+	color: white;
+
+	font-size: 16pt;
+	font-weight: bold;
+	font-family: 'calibri';
+
+	background: rgb(85, 100, 181);
+}
+
+#downloadEncrypted, #downloadDecrypted {
+    display: none;
+}
+
+.selfTest-table {
+    margin: 10px auto;
+    
+    max-width: 900px;
+    width: 100%;
+    min-height: 300px;
+    
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.selfTest-table-sender {
+    width: 49%;
+    max-width: 450px;
+    min-height: 300px;
+}
+
+.selfTest-table-sender h3 {
+    margin: 0 auto;
+    
+    text-align: center;
+    
+    width: 130px;
+}
+
+.selfTest-table-sender span {
+    padding-top: 10px;
+    
+    display: table-cell;
+    text-align: center;
+    
+    max-width: 400px;
+    width: 100%;
+}
+
+.selfTest-table-recipient {
+    width: 49%;
+    max-width: 450px;
+    min-height: 300px;
+}
+
+.selfTest-table-recipient h3 {
+    margin: 0 auto;
+    
+    text-align: center;
+    
+    width: 130px;
+}
+
+.selfTest-table-recipient span {
+    padding-top: 10px;
+    
+    display: table-cell;
+    text-align: center;
+    
+    max-width: 400px;
+    width: 100%;
+}
+
+.genButton {
+    width: 100%;
+    height: 50px;
+    
+    text-align: center;
+}
+
+#alphabet {
+    margin: 0 auto;
+    
+    display: grid;
+    
+    max-width: 700px;
+    min-height: 300px;
+    
+    grid-template-columns: repeat(10, 1fr);
+}
+
+#alphabet div {
+    margin-top: 5px;
+    
+    text-align: center;
+    vertical-align: middle;
+    
+    border: 1px solid rgb(85, 100, 181);
+    min-width: 30px;
+    height: 40px;
+}

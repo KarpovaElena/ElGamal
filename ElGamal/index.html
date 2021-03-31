@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<title>Шифрование методом Эль Гамаля</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+</head>
+<body>
+
+	<header></header>
+
+	<div class="content">
+
+		<div class="history">
+
+			<h2>
+				Об алгоритме
+			</h2>
+
+			<span>
+				Криптосистема с открытым ключом, предложенная в 1985 году и основанная на трудности вычисления дискретных логарифмов в конечном поле. Схема Эль-Гамаля лежит в основе бывших стандартов электронной цифровой подписи в США (DSA) и России (ГОСТ Р 34.10-94).
+			</span>
+
+			<h2>
+				Применяемые обозначения
+			</h2>
+
+			<ul>
+				<li><b>P</b> - простое число;</li>
+				<li><b>G</b> - целое число (первообразный корень <b>P</b>, <b>0 < G < P</b>);</li>
+				<li><b>X</b> - простое число (закрытый ключ; должен быть взаимно простым с <b>P-1</b>; <b>0 < X < P</b>);</li>
+				<li><b>Y</b> - открытый ключ, вычисляется по формуле: <img src="images/y.svg">;</li>
+				<li><b>K</b> - случайное секретное число, взаимно простое с P − 1;</li>
+				<li><b>A</b> - первая часть шифротекста, вычисляется по формуле: <img src="images/a.svg">;</li>
+				<li><b>B</b> - вторая часть шифротекста (само зашифрованное сообщение), вычисляется по формуле: <img src="images/b.svg">;</li>
+				<li><b>M</b> - исходное сообщение пользователя (любое сообщение пользователя, которое он собирается зашифровать);</li>
+				<li><b>M'</b> - зашифрованное сообщение пользователя, расшифровка производится по формуле: <img src="images/m.svg"></li>
+			</ul>
+			
+			<h2>Используемый алфавит</h2>
+			<div id="alphabet"></div>
+
+		</div>
+
+		<br><hr width="700" color="#5564b5"><br>
+
+		<h2 class="headerEncDec">Шифрование и расшифрование</h2>
+
+		<div class="encDec">
+
+			<div class="encrypt">
+				<h3>ШИФРОВАНИЕ СООБЩЕНИЯ</h3><br/>
+				<label>Введите P (пример - <span id="exampleP"></span>)&nbsp;</label><br/><input type="text" name="p" id="p">&nbsp;<br/><br/>
+				<label>Выберите G (1 < G < P)&nbsp;</label><select id="g"></select><br/><br/>
+				<label>Введите X (1 < X < P)&nbsp;</label><br/><input type="text" name="x" id="x"><br/><br/>
+				<label>Число Y: </label><span id="y">...</span><br/><br/>
+				<label>Сообщение М: &nbsp;</label><br/><textarea id="message"></textarea><br/><br/>
+				<label>или </label><input type="file" name="file" id="file_encrypt" accept="text/plain" onchange="upload(this.files[0], this.id)"><br/><br/>
+				<label>Введите K (1 < K < P): </label><br/><input type="text" name="k" id="k"><br/>
+				<button onclick="encryptMsg()" style="margin-top: 20px;">Зашифровать</button><br><br><br>
+				<label>Коэффициент A: </label><span id="a"></span><br/><br/>
+				<label>B (зашифрованное сообщение): </label><textarea id="b"></textarea><br/><br/>
+				<a id="downloadEncrypted" target="_blank" href="" download>Скачать зашифрованное сообщение</a><br/>
+				<span id="timeResEncrypt"></span>
+			</div>
+
+			<div class="decrypt">
+				<h3>РАСШИФРОВКА СООБЩЕНИЯ</h3><br/>
+				<label>Введите P &nbsp;</label><input type="text" name="userP" id="userP">&nbsp;<br/><br/>
+				<label>Введите X &nbsp;</label><input type="text" name="userX" id="userX">&nbsp;<br/><br/>
+				<label>Введите A &nbsp;</label><input type="text" name="userA" id="userA">&nbsp;<br/><br/>
+				<label>Зашифрованное сообщение B&nbsp;</label><br/><textarea name="userB" id="userB"></textarea>&nbsp;<br/><br/>
+				<label>или </label><input type="file" name="file" id="file_decrypt" accept="text/plain" onchange="upload(this.files[0], this.id)"><br/><br/>
+				<button onclick="decryptUserMsg()" style="margin-top: 20px;">Расшифровать</button><br><br><br>
+				<label>Расшифрованное сообщение M': </label><br><textarea id="decodedUserMsg"></textarea><br><br>
+				<a id="downloadDecrypted" target="_blank" href="" download>Скачать расшифрованное сообщение</a><br/>
+				<span id="timeResDecrypt"></span>
+			</div>
+
+		</div>
+
+		<br><br><hr width="700" color="#5564b5">
+
+		<div class="selfTest">
+			<h2>Самопроверка</h2>
+			<div class="selfTest-table">
+			    
+			    <div class="selfTest-table-sender">
+			        <h3>Отправитель</h3>
+			        <span>
+			            Зашифровка сгенерированного сообщения.
+			            Задача отправителя: правильно зашифровать сообщение.
+			        </span><br/>
+			        <div class="genButton">
+			            <button onclick="genSender()">Генерировать</button>
+			        </div>
+			        <div id="genSenderResult"></div>
+			    </div>
+			    
+			    <div class="selfTest-table-recipient">
+			        <h3>Получатель</h3>
+			        <span>
+			            Расшифровка сгенерированного зашифрованного сообщения.
+			            Задача получателя: правильно расшифровать сообщение.
+			        </span><br/>
+			        <div class="genButton">
+			            <button onclick="genRecipient()">Генерировать</button>
+			        </div>
+			        <div id="genRecipientResult"></div>
+			    </div>
+			    
+			</div>
+		</div>
+
+	</div>
+
+	<footer>
+		<script>
+			document.write(1900 + new Date().getYear());
+		</script>
+		Москва
+	</footer>
+
+	<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="js/actions.js"></script>
+
+</body>
+</html>
